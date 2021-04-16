@@ -1,14 +1,26 @@
 import {useState} from 'react';
 import Registerform from '../components/RegisterForm';
+import axios from 'axios';
 
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.table({name, email, password})
+        //the second argument is what you want to post the database
+      try {
+        const res = await axios.post(`http://localhost:8000/api/register`, {
+            name,
+            email,
+            password
+        })
+        console.log(res)
+      } catch (err) {
+          console.log(err)
+      }
+        // console.table({name, email, password})
     }
 
     const handleName = (e) => {
@@ -32,7 +44,7 @@ const Register = () => {
         <div className='container'>
             <div className='row'>
                 <div className='col-md-6 offset-md-3'>
-                    <Registerform handleSubmit={handleSubmit} handleName={handleName} handleEmail={handleEmail} handlePassword={handlePassword}/>
+                    <Registerform handleSubmit={handleSubmit} name={name} password={password} email={email} handleName={handleName} handleEmail={handleEmail} handlePassword={handlePassword}/>
                 </div>
             </div>
         </div>
