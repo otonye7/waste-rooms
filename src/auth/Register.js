@@ -1,8 +1,11 @@
 import {useState} from 'react';
 import Registerform from '../components/RegisterForm';
 import axios from 'axios';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Register = () => {
+const Register = ({history}) => {
+    
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,8 +20,11 @@ const Register = () => {
             password
         })
         console.log(res)
+        toast.success('Registeration Sucessful, You can now Login');
+        history.push('/login')
       } catch (err) {
           console.log(err)
+         if(err.response.status === 400)toast.error(err.response.data, 'You cant Login because you got my form fucked up. Please try again.')
       }
         // console.table({name, email, password})
     }
@@ -40,6 +46,8 @@ const Register = () => {
         <div className='container-fluid bg-secondary p-5 text-center'>
             <h1>Register</h1>
         </div>
+
+        <ToastContainer />
 
         <div className='container'>
             <div className='row'>
