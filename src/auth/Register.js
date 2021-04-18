@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import Registerform from '../components/RegisterForm';
-import axios from 'axios';
+import {register} from '../actions/auth';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,7 +14,7 @@ const Register = ({history}) => {
         e.preventDefault();
         //the second argument is what you want to post the database
       try {
-        const res = await axios.post(`http://localhost:8000/api/register`, {
+        const res = await register({
             name,
             email,
             password
@@ -28,6 +28,7 @@ const Register = ({history}) => {
       }
         // console.table({name, email, password})
     }
+
 
     const handleName = (e) => {
         setName(e.target.value)
