@@ -2,10 +2,13 @@ import {useState} from 'react';
 import {toast} from 'react-toastify';
 import {login} from '../actions/auth';
 import LoginForm from '../components/LoginForm';
+import {useDispatch} from 'react-redux';
 
-const Login = () => {
+const Login = ({history}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const dispatch = useDispatch();
 
 
   const handleSubmit = async (e) => {
@@ -17,7 +20,16 @@ const Login = () => {
                   password
               })
             if(res.data) {
-                console.log(res.data)
+                //save user and token to local storage
+                //save user and token to redux
+                window.localStorage.setItem('auth', JSON.stringify(res.data));
+
+                dispatch({
+                    type: "LOGGED_IN_USER",
+                    payload: res.data
+                });
+                history.push('/')
+                // console.log(res.data)
             }
           }
           catch(err) {
