@@ -1,6 +1,13 @@
 import UserActionTypes from './user.types';
+let userState;
 
-const userReducer = (state= {name: 'Otonye', role: 'Programmer'}, action ) => {
+if (window.localStorage.getItem('auth')) {
+    userState = JSON.parse(window.localStorage.getItem('auth'))
+} else {
+    userState = null
+}
+
+const userReducer = (state= userState, action ) => {
     switch(action.type) {
         case UserActionTypes.LOGGED_IN_USER:
             return {
