@@ -20,15 +20,15 @@ const Login = ({history}) => {
                   password
               })
             if(res.data) {
-                //save user and token to local storage
-                //save user and token to redux
+                //save users and token to local storage
+                //save users and token to redux
                 window.localStorage.setItem('auth', JSON.stringify(res.data));
 
                 dispatch({
                     type: "LOGGED_IN_USER",
                     payload: res.data
                 });
-                history.push('/')
+                history.push('/dashboard')
                 // console.log(res.data)
             }
           }
