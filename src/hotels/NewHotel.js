@@ -1,9 +1,11 @@
 // import {useSelector} from 'react-redux';
 import {useState} from 'react';
 import AlgoliaPlaces from 'algolia-places-react';
-import {DatePicker} from 'antd';
+import {DatePicker, Select} from 'antd';
 import moment from 'moment';
 
+
+const {Option} = Select;
 
 const config = {
     appId : process.env.REACT_APP_ALGOLIA_APP_ID,
@@ -54,7 +56,13 @@ const NewHotels = () => {
                 <textarea  name='content' onChange={handleChange} placeholder='Content' className='form-control m-2' value={content}/>
                 <AlgoliaPlaces className='form-control ml-2 mr-2' placeholder='location' defaultValue={location} options={config} onChange={({suggestion}) => setValues({...value, location: suggestion.value})} style={{height: '50px'}}/>
                 <input type='number' name='price' onChange={handleChange} placeholder='Price' className='form-control m-2' value={price}/>
-                <input type='number' name='bed' onChange={handleChange} placeholder='Number of beds' className='form-control m-2' value={bed}/>
+                {/* <input type='number' name='bed' onChange={handleChange} placeholder='Number of beds' className='form-control m-2' value={bed}/> */}
+                <Select onChange={(value) => setValues({...value, bed: value})} className='w-100 m-2' size='large' placeholder='Number of beds'>
+                    <Option key={1}>{1}</Option>
+                    <Option key={2}>{2}</Option>
+                    <Option key={3}>{3}</Option>
+                    <Option key={4}>{4}</Option>
+                </Select>
             </div>
 
             <DatePicker
