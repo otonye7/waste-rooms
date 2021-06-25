@@ -9,3 +9,11 @@ export const createHotel = async (token, data) => {
 }
 
 export const allHotels = async () => await axios.get(`http://localhost:8000/api/hotels`)
+
+export const diffDays = (from, to) => {
+    const day = 24 * 60 * 60 * 1000
+    const start = new Date(from)
+    const end = new Date(to)
+    const difference = Math.round(Math.abs((start - end) / day))
+    return difference
+}
