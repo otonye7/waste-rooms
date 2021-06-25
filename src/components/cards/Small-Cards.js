@@ -1,6 +1,8 @@
 import {diffDays} from '../../actions/hotels';
+import {useHistory} from 'react-router-dom';
 
 const SmallCards = ({h}) => {
+    const history = useHistory()
     return (
         <>
         <div className='card mb-3'>
@@ -17,9 +19,11 @@ const SmallCards = ({h}) => {
                          <p className='alert alert-info'>{h.location}</p>
                          <p className='card-text'>
                              <span className='float-right text-primary'>
-                                 for {diffDays(h.from, h.to)}
+                                 for {diffDays(h.from, h.to)} {diffDays(h.from, h.to) <= 1 ? ' day' : ' days'}
                              </span>
                          </p>
+                         <p className='card-text'>Available From: {new Date(h.from).toLocaleDateString()}</p>
+                         <button onClick={() => history.push(`/hotel/${h._id}`)} className='btn btn-primary'>Show More</button>
                     </div>
                 </div>
             </div>
