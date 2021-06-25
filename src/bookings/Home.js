@@ -1,11 +1,13 @@
-// import {useSelector} from 'react-redux';
-// import { connect } from 'react-redux';
-// import { selectUser} from '../redux/user/user.selector';
-// import { createStructuredSelector } from 'reselect';
+import {useEffect, useState} from 'react';
+import {allHotels} from '../actions/hotel';
 
 const Home = () => {
+    const [hotels, setHotels] = useState([]);
 
-    // const {auth} = useSelector((state) => ({...state}))
+    useEffect(() => {
+
+    }, [])
+
     return (
         <div className='container-fluid h1 p-5 text-center'>
             HOME PAGE 
@@ -13,9 +15,5 @@ const Home = () => {
     )
 }
 
-// const mapStateToProps = createStructuredSelector({
-//     users: selectUser
-// })
 
-// export default connect(mapStateToProps)(Home);
 export default  Home;

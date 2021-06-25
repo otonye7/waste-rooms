@@ -7,3 +7,5 @@ export const createHotel = async (token, data) => {
         }
     })
 }
+
+export const allHotels = async () => await axios.get(`http://localhost:8000/api/hotels`)
